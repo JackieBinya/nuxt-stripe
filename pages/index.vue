@@ -1,34 +1,62 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        nuxt-stripe
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <button v-if="isStripeLoaded" @click="checkout">Subscribe</button>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data(){
+    return{
+      isStripeLoaded: false
+    }
+  },
+   head() {
+    return {
+      script: [
+        {
+          hid: "stripe",
+          src: "https://js.stripe.com/v3/",
+          defer: true,
+          callback: () => {
+            this.isStripeLoaded = true
+          },
+        },
+      ],
+    }
+  },
+   methods: {
+    checkout(priceId) {
+      /*
+       * The logic below is only executed when the Stripe script has been fully loaded
+       * When this page is mounted Stripe does not exist, when in dev mode eslint picks up that issue and kills the server
+       * So we disable the eslint-no-undef rule to prevent constantly restarting the server
+       */
+
+      /* eslint-disable-next-line */
+      const stripe = Stripe(process.env.stripePublishableKey)
+
+      this.isLoadingCheckout = true
+
+      fetch('/create-checkout-session', {
+          method: 'POST',
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function (result) {
+          // TODO Logic to handle custom errors
+          if (result.error) {
+            const displayError = document.getElementById("error-message")
+            displayError.textContent = result.error.message
+          }
+        })
+    },
+  },
+}
 </script>
 
 <style>
