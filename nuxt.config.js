@@ -45,5 +45,14 @@ export default {
 
   serverMiddleware: {
     '/api': '~/api'
+  },
+
+  env: {
+    // baseUrl: development ? "http://localhost:3000" : process.env.BASE_URL,
+    stripePublishableKey: process.env.STRIPE_PK,
+  },
+
+  proxy: {
+    '/api': 'http://localhost:4242',
   }
 }

@@ -26,7 +26,7 @@ export default {
     }
   },
    methods: {
-    checkout(priceId) {
+    checkout() {
       /*
        * The logic below is only executed when the Stripe script has been fully loaded
        * When this page is mounted Stripe does not exist, when in dev mode eslint picks up that issue and kills the server
@@ -34,11 +34,11 @@ export default {
        */
 
       /* eslint-disable-next-line */
-      const stripe = Stripe(process.env.stripePublishableKey)
+      const stripe = Stripe('pk_test_51IP1D3CD5ZUxyIJExfLLgTNutoYf0nZaajcJYKd112kSEam8Lrv1oRM2CLbOmHBt9bKpCeMolF89j10iKj95xIu600uSXS2OZL')
 
       this.isLoadingCheckout = true
 
-      fetch('/create-checkout-session', {
+      fetch('api/create-checkout-session', {
           method: 'POST',
         })
         .then(function(response) {
@@ -47,13 +47,35 @@ export default {
         .then(function(session) {
           return stripe.redirectToCheckout({ sessionId: session.id });
         })
-        .then(function (result) {
-          // TODO Logic to handle custom errors
+        .then(function(result) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, you should display the localized error message to your
+          // customer using `error.message`.
           if (result.error) {
-            const displayError = document.getElementById("error-message")
-            displayError.textContent = result.error.message
+            alert(result.error.message);
           }
         })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+
+      // fetch('api/create-checkout-session', {
+      //     method: 'POST',
+      //   })
+      //   .then(function(response) {
+      //     console.log('here')
+      //     return response.json();
+      //   })
+      //   .then(function(session) {
+      //     return stripe.redirectToCheckout({ sessionId: session.id });
+      //   })
+      //   .then(function (result) {
+      //     // TODO Logic to handle custom errors
+      //     if (result.error) {
+      //       const displayError = document.getElementById("error-message")
+      //       displayError.textContent = result.error.message
+      //     }
+      //   })
     },
   },
 }
