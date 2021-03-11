@@ -58,24 +58,6 @@ export default {
         .catch(function(error) {
           console.error('Error:', error);
         });
-
-      // fetch('api/create-checkout-session', {
-      //     method: 'POST',
-      //   })
-      //   .then(function(response) {
-      //     console.log('here')
-      //     return response.json();
-      //   })
-      //   .then(function(session) {
-      //     return stripe.redirectToCheckout({ sessionId: session.id });
-      //   })
-      //   .then(function (result) {
-      //     // TODO Logic to handle custom errors
-      //     if (result.error) {
-      //       const displayError = document.getElementById("error-message")
-      //       displayError.textContent = result.error.message
-      //     }
-      //   })
     },
   },
 }
