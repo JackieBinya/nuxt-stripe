@@ -45,12 +45,12 @@ export default {
   build: {
   },
 
-  // serverMiddleware:[
-  //   {
-  //     path:"/register/api",
-  //     handler:"~api/customers"
-  //   }
-  // ] ,
+  serverMiddleware:[
+    {
+      path:"/register/api",
+      handler:"~api/customers"
+    }
+  ] ,
   env: {
     // baseUrl: development ? "http://localhost:3000" : process.env.BASE_URL,
     stripePublishableKey: process.env.STRIPE_PK,
