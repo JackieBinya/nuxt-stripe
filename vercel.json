@@ -1,9 +1,18 @@
 {
-    "builds": [
-      {
-        "src": "nuxt.config.js",
-        "use": "@nuxtjs/vercel-builder",
-        "config": {}
+  "version": 2,
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/vercel-builder",
+      "config": {
+        "serverFiles": ["server-middleware/**"]
       }
-    ]
-  }
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "rewrites": [{ "source": "/register", "destination": "/api/customers" }]
+}
+

@@ -7,22 +7,19 @@
       type="text"
       placeholder="Work Email"
     />
-    <button v-if="slug === corePriceId" type="submit">Free Trial</button>
-    <button v-else type="submit">Continue</button>
+    <button type="submit">Free Trial</button>
   </form>
 </template>
 <script>
 export default {
   data() {
     return {
-      slug: this.$route.params.slug,
-      corePriceId: "price_1IRIwiCD5ZUxyIJEU4jaghEZ",
+    //   corePriceId: "price_1IRIwiCD5ZUxyIJEU4jaghEZ",
       customer: {},
     };
   },
   methods: {
     async createCustomer() {
-    console.log(process.env)
       const result = await fetch("https://nuxt-stripe-v5.vercel.app/api/customers", {
         method: "POST",
         headers: {

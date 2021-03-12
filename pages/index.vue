@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- <button v-if="isStripeLoaded" @click="checkout">Subscribe</button> -->
-    <nuxt-link  v-for="{plan, id,priceId} in plans" :to="`/register/${priceId}`" v-bind:key="id" class="inline-block">
+    <nuxt-link  v-for="{plan, id} in plans" to="/register" v-bind:key="id" class="inline-block">
       <span v-if="plan === 'core'">Free Trial</span>
       <span v-else>Select Plan</span>
     </nuxt-link>
