@@ -18,13 +18,20 @@
         methods:{
         createCustomer (){
             console.log(JSON.stringify(this.customer))
-            fetch('api/customers', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(this.customer)
-            })
+            fetch("app/api/customers", {
+  body: "name=kelly&email=kelly.live.com",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  method: "POST"
+})
+            // fetch('api/customers', {
+            //     method: 'POST',
+            //     headers: {
+            //     'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(this.customer)
+            // })
             .then(response =>{
                 console.log('Response:', response)
                 return response.json()

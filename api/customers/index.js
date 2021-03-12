@@ -11,5 +11,5 @@ module.exports = async (req, res) => {
 
     // res.send(customer)
 
-    res.send(req.body.name)
+    res.send({name: req.body.name})
 }
