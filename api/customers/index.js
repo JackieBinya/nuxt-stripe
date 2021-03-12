@@ -3,6 +3,8 @@ const stripe = require('stripe')('sk_test_51IP1D3CD5ZUxyIJEJEj26gjKOBaWPVFTCigOU
 module.exports = async (req, res) => {
     const { body } = req
 
+    console.log(body.customer)
+
     const customer = await stripe.customers.create({
         name: body.customer.name,
         email: body.customer.email,
