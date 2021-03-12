@@ -16,7 +16,7 @@
             }
         },
         methods:{
-        createCustomer(){
+        createCustomer (){
             fetch('api/customers', {
                 method: 'POST',
                 headers: {
@@ -25,9 +25,13 @@
             },
                 body: JSON.stringify(this.customer)
         })
-        .then(function(response) {
-          return response.json();
+        .then(response => response.json())
+        .then(data => {
+        console.log('Success:', data);
         })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
             }
         }
     }
