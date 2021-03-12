@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <button v-if="isStripeLoaded" @click="checkout">Subscribe</button>
+    <!-- <button v-if="isStripeLoaded" @click="checkout">Subscribe</button> -->
+    <nuxt-link  v-for="{plan, id,priceId} in plans" :to="`/register/${priceId}`" v-bind:key="id" class="inline-block">
+      <span v-if="plan === 'core'">Free Trial</span>
+      <span v-else>Select Plan</span>
+    </nuxt-link>
   </div>
 </template>
 
@@ -8,7 +12,24 @@
 export default {
   data(){
     return{
-      isStripeLoaded: false
+      isStripeLoaded: false,
+      plans: [
+        {
+          id: 1,
+          plan: "core",
+          priceId: "price_1IRIwiCD5ZUxyIJEU4jaghEZ"
+        },
+        {
+          id: 2,
+          plan: "plus",
+          priceId: "price_1IRIzDCD5ZUxyIJETz8vAYeR"
+        },
+        {
+          id: 1,
+          plan: "enterprise",
+          priceId: "price_1IRJ0mCD5ZUxyIJETbusbjQX"
+        }
+      ]
     }
   },
    head() {
@@ -106,5 +127,13 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+
+a{
+  border: 1px solid blueviolet;
+  border-radius: 4px;
+  margin-right: 1rem;
+  width: 140px;
+  padding: 1rem;
 }
 </style>
