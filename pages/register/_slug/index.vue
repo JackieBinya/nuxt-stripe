@@ -17,21 +17,24 @@
         },
         methods:{
         createCustomer (){
+            console.log(JSON.stringify(this.customer))
             fetch('api/customers', {
                 method: 'POST',
-                headers: {
-      'Content-Type': 'application/json'
-      
-            },
+                // headers: {
+                // 'Content-Type': 'application/json'
+                // },
                 body: JSON.stringify(this.customer)
-        })
-        .then(response => response.json())
-        .then(data => {
-        console.log('Success:', data);
-        })
-        .catch((error) => {
-        console.error('Error:', error);
-        });
+            })
+            .then(response =>{
+                console.log('Response:', response)
+                return response.json()
+            })
+            .then(data => {
+            console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
             }
         }
     }
