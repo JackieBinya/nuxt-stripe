@@ -20,9 +20,9 @@
             console.log(JSON.stringify(this.customer))
             fetch('api/customers', {
                 method: 'POST',
-                // headers: {
-                // 'Content-Type': 'application/json'
-                // },
+                headers: {
+                'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(this.customer)
             })
             .then(response =>{
