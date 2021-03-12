@@ -29,7 +29,7 @@ export default {
       });
 
       const { id } = result.json();
-      this.createFreeTrial(id);
+    //   this.createFreeTrial(id);
     },
 
     async createFreeTrial(id) {
