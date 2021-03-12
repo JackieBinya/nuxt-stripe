@@ -1,3 +1,5 @@
+const development = process.env.NODE_ENV !== "production"
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -54,7 +56,8 @@ export default {
     stripePublishableKey: process.env.STRIPE_PK,
   },
 
-  proxy: {
-    '/api': 'http://localhost:4242',
-  }
+  env: {
+    baseUrl: development ? "http://localhost:3000" : process.env.BASE_URL,
+    stripePublishableKey: process.env.STRIPE_PK,
+  },
 }
