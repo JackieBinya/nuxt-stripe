@@ -22,7 +22,8 @@ export default {
   },
   methods: {
     async createCustomer() {
-      const result = await fetch(`${process.env.baseUrl}/api/customers`, {
+    console.log(process.env)
+      const result = await fetch("https://nuxt-stripe-v5.vercel.app/api/customers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
