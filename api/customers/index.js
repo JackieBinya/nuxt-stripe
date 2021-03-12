@@ -11,5 +11,5 @@ module.exports = async (req, res) => {
 
     // res.send(customer)
 
-    res.send(example)
+    res.send(req)
 }
