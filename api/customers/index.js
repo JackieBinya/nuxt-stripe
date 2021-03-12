@@ -13,5 +13,5 @@ module.exports = async (req, res) => {
 
     // res.send(customer)
 
-    res.send({name})
+    res.send({message: "Hello World"})
 }
