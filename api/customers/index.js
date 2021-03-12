@@ -16,4 +16,6 @@ module.exports = async (req, res) => {
         ],
         trial_period_days: 15,
       })
+
+      res.send({status: "success"})
 }
