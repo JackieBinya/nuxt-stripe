@@ -4,8 +4,8 @@ module.exports = async (req, res) => {
     const { body } = req
 
     const customer = await stripe.customers.create({
-        name: body.customer.name,
-        email: body.customer.email,
+        name: body.name,
+        email: body.email,
       });
 
 
